@@ -8,6 +8,14 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
+const corsOptions = {
+    origin: 'https://sathiska567.github.io/key-word-test/', // Allow only your frontend
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+};
+
+app.use(cors(corsOptions));
+
 app.use(cors());
 app.use(bodyParser.json());
 
