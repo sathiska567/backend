@@ -2,8 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const os = require('os'); // Import OS module
-const path = require('path'); // Import Path module
+const os = require('os');
+const path = require('path');
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +13,11 @@ app.use(bodyParser.json());
 
 // Get the user's Downloads folder path
 const downloadsPath = path.join(os.homedir(), 'Downloads', 'browserData.txt');
+
+// ✅ Fix: Use `app.get('/')` instead of `app.use('/')`
+app.get('/', (req, res) => {
+    res.send("Hello World");
+});
 
 // API route to save data
 app.post('/save', (req, res) => {
